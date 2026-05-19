@@ -1,5 +1,5 @@
 'use client';
-
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LogOut, Shield, Clock, User } from 'lucide-react';
@@ -70,6 +70,7 @@ export default function Dashboard() {
           <div>
             <div className="text-emerald-400 text-sm tracking-[2px]">SECURE DASHBOARD</div>
             <h1 className="text-6xl font-semibold tracking-tighter">Good to see you, {user?.displayName?.split(' ')[0] || 'Human'}.</h1>
+	       <ConnectButton />     
           </div>
         </div>
 

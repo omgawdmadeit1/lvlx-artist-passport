@@ -22,9 +22,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Verification failed' }, { status: 400 });
     }
 
-    const { credentialPublicKey, credentialID, counter } = verification.registrationInfo;
-
-    // Create user + credential in database
+const registrationInfo = verification.registrationInfo;
+const credentialID = registrationInfo.credential.id;
+const credentialPublicKey = registrationInfo.credential.publicKey;
+const counter = registrationInfo.credential.counter;    // Create user + credential in database
     const user = await prisma.user.create({
       data: {
         id: userId,

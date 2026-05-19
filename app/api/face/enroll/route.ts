@@ -12,20 +12,21 @@ export async function POST(request: NextRequest) {
 
     const embedding = new Float32Array(descriptor);
 
-    // Encrypt the embedding
     const { encrypted, iv } = encryptEmbedding(embedding, userId);
 
-    // Upsert face embedding
+    const encryptedBytes = Uint8Array.from(encrypted);
+    const ivBytes = Uint8Array.from(iv);
+
     await prisma.faceEmbedding.upsert({
       where: { userId },
       create: {
         userId,
-        embedding: encrypted,
-        iv,
+        embedding: encryptedBytes,
+        iv: ivBytes,
       },
       update: {
-        embedding: encrypted,
-        iv,
+        embedding: encryptedBytes,
+        iv: ivBytes,
         lastUsed: null,
       },
     });

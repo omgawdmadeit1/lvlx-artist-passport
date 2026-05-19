@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
+import { WalletProviders } from '@/components/WalletProviders';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -21,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-zinc-950 text-white antialiased">
-        {children}
-        <Toaster position="top-center" richColors closeButton />
+        <WalletProviders>
+          {children}
+          <Toaster position="top-center" richColors closeButton />
+        </WalletProviders>
       </body>
     </html>
   );

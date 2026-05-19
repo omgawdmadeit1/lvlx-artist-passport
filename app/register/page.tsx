@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [step, setStep] = useState<'intro' | 'liveness' | 'passkey' | 'success'>('intro');
+  const [step, setStep] = useState<'intro' | 'liveness' | 'passkey' | 'face-enroll' | 'success'>('intro');
   const [displayName, setDisplayName] = useState('');
   const [userId, setUserId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,11 @@ export default function RegisterPage() {
       const options = await optionsRes.json();
 
       // Create passkey
-      const credential = await startRegistration(options);
+console.log('REG OPTIONS:', options);
+
+const credential = await startRegistration({
+  optionsJSON: options.publicKey ? options.publicKey : options,
+});
 
       // Verify on server
       const verifyRes = await fetch('/api/auth/verify-registration', {

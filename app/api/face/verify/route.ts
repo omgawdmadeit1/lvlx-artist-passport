@@ -21,7 +21,11 @@ export async function POST(request: NextRequest) {
 
     for (const record of allEmbeddings) {
       try {
-        const storedEmbedding = decryptEmbedding(record.embedding, record.iv, record.userId);
+       const storedEmbedding = decryptEmbedding(
+  Buffer.from(record.embedding),
+  Buffer.from(record.iv),
+  record.userId
+);;
         const similarity = cosineSimilarity(inputEmbedding, storedEmbedding);
 
         if (!bestMatch || similarity > bestMatch.similarity) {
