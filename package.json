@@ -16,7 +16,7 @@
     "@prisma/client": "^6.5.0",
     "@rainbow-me/rainbowkit": "^2.2.11",
     "@simplewebauthn/browser": "^13.1.0",
-    "@simplewebauthn/server": "^13.1.0",
+    "@simplewebauthn/server": "^13.3.2",
     "@tanstack/react-query": "^5.100.11",
     "face-api.js": "^0.22.2",
     "jose": "^5.9.6",
